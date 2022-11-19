@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iY5f6YyTdfQ7FQ5AIt/2cgWznKUrokPwsH8/vVp3BG8EMaZry+Y2J5fp5ucVp29cBfKwPpyiIKCVHBe4IeTYCQ==",
+  "dgSpecHash": "gujB7mMMG3chXukkfraQTZbOw5BCS1pNy4ScokrgzWw1JhavYp6veGAVX2uT8h/7BGffj18ybVJql933WOkslA==",
   "success": true,
-  "projectFilePath": "D:\\obada\\obada.csproj",
+  "projectFilePath": "C:\\Users\\odayq\\RiderProjects\\Northwind\\obada.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\odayq\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\odayq\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",

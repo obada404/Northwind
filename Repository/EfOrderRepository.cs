@@ -11,14 +11,14 @@ public class EfOrderRepository:IOrderRepository
     {
         _context = context;
     }
-    public Order Add(Order order)
+    public async Task<int> Add(Order order)
     {
        _context.Orders.Add(order);
         _context.SaveChanges();
-        return order;
+        return order.OrderId;
     }
 
-    public Order find(int orderId)
+    public async Task<Order> find(int orderId)
     {
        return _context.Orders.FirstOrDefault(x=> x.OrderId == orderId);
     }

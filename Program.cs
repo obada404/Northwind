@@ -12,7 +12,7 @@ builder.Services.AddDbContext<NorthwindContext>();
 builder.Services.AddScoped<IproductRepository, EfProductRepository>();
 builder.Services.AddScoped<IprudectService, productService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
-builder.Services.AddScoped<IOrderRepository, EfOrderRepository>();
+builder.Services.AddScoped<IOrderRepository, dapperOrderRepository>();
 
 
 

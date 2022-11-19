@@ -6,24 +6,23 @@ namespace obada.Service;
 public interface IOrderService
 {
    
-    Order addOrder(orderRequest order);
+    Task<int> addOrder(orderRequest order);
     Order findOrder(orderRequest order);
-    Order FindOrder(int orderId);
+    Task<Order> FindOrder(int orderId);
     bool updateOrder(orderRequest order);
     
 }
 public class OrderService:IOrderService
 {
-    private readonly IOrderRepository _orderService;
-    public OrderService(IOrderRepository orderService)
+    private readonly IOrderRepository _OrderRepository;
+    public OrderService(IOrderRepository orderRepository)
     {
-        _orderService = orderService;
+        _OrderRepository = orderRepository;
     }
-    public Order addOrder(orderRequest order)
+    public async Task<int> addOrder(orderRequest order)
     {
-        Order tmpOrder = new Order();
-       return _orderService.Add(tmpOrder);
-
+        Order tmpOrder = new Order(order);
+       return  await _OrderRepository.Add(tmpOrder);
     }
 
     public Order findOrder(orderRequest order)
@@ -31,9 +30,9 @@ public class OrderService:IOrderService
         throw new NotImplementedException();
     }
 
-    public Order FindOrder(int orderId)
+    public Task<Order> FindOrder(int orderId)
     {
-      return  _orderService.find(orderId);
+      return  _OrderRepository.find(orderId);
     }
 
     public bool updateOrder(orderRequest order)

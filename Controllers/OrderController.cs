@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using obada.DTO;
 using obada.Models;
 using obada.Service;
 
@@ -13,8 +14,14 @@ public class OrderController : Controller
     }
     [HttpGet]
     [Route("/order/{orderId}")]
-    public Order GetOrder(int orderId)
+    public Task<Order> GetOrder(int orderId)
     {
         return _orderService.FindOrder(orderId);
+    }
+    [HttpPost]
+    [Route("/order")]
+    public async Task<int> GetOrder([FromBody] orderRequestEnv<orderRequest> req )
+    {
+        return  await _orderService.addOrder(req.order);
     }
 }

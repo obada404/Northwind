@@ -6,18 +6,50 @@ namespace obada.Models;
 
 public partial class Order
 {
-    // public Order(orderRequest order)
-    // {
-    //     this.CustomerId = order.CustomerId;
-    //     this.EmployeeId = order.EmployeeId;
-    //     this.OrderDate = order.OrderDate;
-    //     this.RequiredDate = order.RequiredDate;
-    //     this.ShippedDate = order.ShippedDate;
-    //     this.ShipVia = order.ShipVia;
-    //     this.Freight = order.Freight;
-    // }
+   
 
+    public Order(orderRequest order)
+    {
+        this.CustomerId = order.CustomerId;
+        this.EmployeeId = order.EmployeeId;
+        this.OrderDate = order.OrderDate;
+        this.RequiredDate = order.RequiredDate;
+        this.ShippedDate = order.ShippedDate;
+        this.ShipVia = order.ShipVia;
+        this.Freight = order.Freight;
     
+        ShipName = "";
+        ShipAddress = "";
+        ShipCity = "";
+        ShipRegion = "";
+        ShipPostalCode = "";
+        ShipCountry = "";
+        Customer = null;
+        Employee = null;
+        ShipViaNavigation = null;
+    }
+
+    public Order(int OrderId, string? CustomerId, int? EmployeeId, DateTime? OrderDate, DateTime? RequiredDate, DateTime? ShippedDate, 
+        int? ShipVia, decimal? Freight, string? ShipName, string? ShipAddress, string? ShipCity, string? ShipRegion, string? ShipPostalCode,
+        string? ShipCountry )
+    {
+       this.OrderId = OrderId;
+       this.CustomerId = CustomerId;
+       this.EmployeeId = EmployeeId;
+       this.OrderDate = OrderDate;
+       this.RequiredDate = RequiredDate;
+       this.ShippedDate = ShippedDate;
+       this.ShipVia = ShipVia;
+       this.Freight = Freight;
+       this.ShipName = ShipName;
+       this.ShipAddress = ShipAddress;
+       this.ShipCity = ShipCity;
+       this.ShipRegion = ShipRegion;
+       this.ShipPostalCode = ShipPostalCode;
+       this.ShipCountry = ShipCountry;
+
+    }
+
     public int OrderId { get; set; }
 
     public string? CustomerId { get; set; }

@@ -10,21 +10,20 @@ namespace obada.Controllers;
 
 public class HomeController : Controller
 {
-    readonly private NorthwindContext  _context;
     readonly private IConfiguration  _configuration;
-
-    public HomeController(NorthwindContext context,IConfiguration configuration)
+         private SqlConnection connection;
+    public HomeController(IConfiguration configuration)
     {
-        _context = context;
         _configuration = configuration;
+        connection  = new SqlConnection(_configuration.GetConnectionString("DefultConnection"));
     }
 
     [HttpGet]
-    [Route("/index")]
-    public async Task<ActionResult<List<Order>>>  getindex()
+    [Route("/index/{Query}")]
+    public async Task<ActionResult<List<Order>>>  getindex(String Query)
     {
-        using var connection = new SqlConnection(_configuration.GetConnectionString("DefultConnection"));
-        var orders = await connection.QueryAsync("select * from orders");
+        
+        var orders = await connection.QueryAsync(Query);
         return Ok(orders);
     }
     
