@@ -1,4 +1,6 @@
  
+using BenchmarkDotNet.Running;
+using obada;
 using obada.Interface;
 using obada.Models;
 using obada.Repository;
@@ -14,7 +16,7 @@ builder.Services.AddScoped<IprudectService, productService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<IOrderRepository, dapperOrderRepository>();
 
-
+BenchmarkRunner.Run<batabaseBenchmarks>();
 
 
 
