@@ -38,4 +38,36 @@ public class EfProductRepository:IproductRepository
     {
         _context.Products.Update(product);
     }
+
+    public dynamic complexJoin(int productId)
+    {
+        var que  =
+        ( from P in _context.Products
+            join  S in _context.Suppliers
+                on P.SupplierId equals S.SupplierId
+                join C in _context.Categories
+                on P.CategoryId equals C.CategoryId
+            where P.ProductId.Equals(productId)
+            select new
+            {
+                ProductID =P.ProductId,
+                ProductName =P.ProductName,
+                ProductsSupplierID= P.SupplierId,
+                SuppliersSupplierID =S.SupplierId,
+                ProductsCategoryID=P.CategoryId
+                ,CategoriesCategoryID=C.CategoryId
+                ,QuantityPerUnit =P.QuantityPerUnit
+                ,UnitPrice =P.UnitPrice,
+                UnitsInStock =P.UnitsInStock
+                ,SuppliersCompanyName =S.CompanyName,
+                SuppliersContactName =S.ContactName,
+                SuppliersCountry=S.Country,
+                SuppliersPhone = S.Phone,
+                CategoriesCategoryName=C.CategoryName,
+                CategoriesDescription =C.Description,
+            });
+
+        return que.ToList().Last();
+        
+    }
 }

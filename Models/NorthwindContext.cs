@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
-
+using System.ComponentModel.DataAnnotations.Schema;
 namespace obada.Models;
 
 public partial class NorthwindContext : DbContext
 {
     public NorthwindContext()
     {
+      
     }
 
     public NorthwindContext(DbContextOptions<NorthwindContext> options)
         : base(options)
     {
+        
     }
 
     public virtual DbSet<AlphabeticalListOfProduct> AlphabeticalListOfProducts { get; set; }
@@ -68,7 +71,8 @@ public partial class NorthwindContext : DbContext
     public virtual DbSet<Supplier> Suppliers { get; set; }
 
     public virtual DbSet<Territory> Territories { get; set; }
-
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
+    public decimal Identity_Col { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server =.\\SQLEXPRESS;Database=Northwind;Trusted_Connection=true; TrustServerCertificate=True; ");

@@ -9,5 +9,7 @@ public interface IproductRepository
     public Product find(Product product);
     public void Delete(Product  product);
     public void Update(Product product);
-   // public List<UserOld> GetUsersGeneric(Func<UserOld,bool> pred);  
+
+    public dynamic complexJoin(int productId);
+    // public List<UserOld> GetUsersGeneric(Func<UserOld,bool> pred);  
 }

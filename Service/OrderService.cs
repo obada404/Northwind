@@ -1,6 +1,8 @@
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using obada.DTO;
 using obada.Interface;
 using obada.Models;
+using obada.Service;
 
 namespace obada.Service;
 public interface IOrderService
@@ -9,9 +11,15 @@ public interface IOrderService
     Task<int> addOrder(orderRequest order);
     Order findOrder(orderRequest order);
     Task<Order> FindOrder(int orderId);
-    bool updateOrder(orderRequest order);
-    
+    Task<int> updateOrder(orderRequest order);
+    int deleteorder(orderRequest orderRequest);
+    int deleteorder();
+
+    void joincomplex();
+
 }
+
+
 public class OrderService:IOrderService
 {
     private readonly IOrderRepository _OrderRepository;
@@ -35,8 +43,24 @@ public class OrderService:IOrderService
       return  _OrderRepository.find(orderId);
     }
 
-    public bool updateOrder(orderRequest order)
+    public Task<int> updateOrder(orderRequest order)
     {
-        throw new NotImplementedException();
+        Order tmpOrder = new Order(order);
+        return  _OrderRepository.Update(tmpOrder);
+    }
+
+    public int deleteorder(orderRequest orderRequest)
+    {
+        Order tmpOrder = new Order(orderRequest);
+       return _OrderRepository.Delete(tmpOrder);
+    }
+    public int deleteorder()
+    {
+        return _OrderRepository.Delete();
+    }
+
+    public void joincomplex()
+    {
+        _OrderRepository.joinComplex();
     }
 }

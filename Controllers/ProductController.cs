@@ -27,4 +27,10 @@ public class ProductController : Controller
     {
         return _prodectService.findProduct(productId);
     }
+    [HttpGet]
+    [Route("/productjoin/{productId}")]
+    public Product GetProductjoin(int productId)
+    {
+        return _prodectService.joinComplex(productId);
+    }
 }

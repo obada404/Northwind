@@ -1,5 +1,7 @@
 ### Git Ignore###
 # User-specific files
+apply-gitignore = !git ls-files -ci --exclude-standard -z | xargs -0r git rm --cached    
+
 *.suo
 *.user
 *.userosscache

@@ -9,7 +9,7 @@ public interface IprudectService
     Product findProduct(productRequest product);
     Product findProduct(int productId);
     bool updateProduct(productRequest product);
-
+    dynamic joinComplex(int productId);
 }
 
 public class productService :IprudectService
@@ -45,5 +45,10 @@ public class productService :IprudectService
     public bool updateProduct(productRequest product)
     {
         throw new NotImplementedException();
+    }
+
+    public dynamic joinComplex(int productId)
+    {
+        return _productRepository.complexJoin(productId);
     }
 }

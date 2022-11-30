@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using obada.DTO;
 
 namespace obada.Models;
@@ -10,6 +12,7 @@ public partial class Order
 
     public Order(orderRequest order)
     {
+        this.OrderId = order.OrderId;
         this.CustomerId = order.CustomerId;
         this.EmployeeId = order.EmployeeId;
         this.OrderDate = order.OrderDate;
@@ -50,6 +53,8 @@ public partial class Order
 
     }
 
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public int OrderId { get; set; }
 
     public string? CustomerId { get; set; }
