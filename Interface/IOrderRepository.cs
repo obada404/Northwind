@@ -13,4 +13,5 @@ public interface IOrderRepository
     public Task<int> Update(Order order);
 
     void joinComplex();
+    Task<Order> find();
 }

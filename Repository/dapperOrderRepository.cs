@@ -80,4 +80,11 @@ public class dapperOrderRepository:IOrderRepository
     {
         throw new NotImplementedException();
     }
+
+    public Task<Order> find()
+    {
+        var orders =  connection.QuerySingleAsync<Order>("select top(1) from orders");
+
+        return (orders);
+    }
 }

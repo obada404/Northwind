@@ -8,8 +8,9 @@ namespace obada.Service;
 public interface IOrderService
 {
    
-    Task<int> addOrder(orderRequest order);
+    Task<Order> addOrder(Order order);
     Order findOrder(orderRequest order);
+    Task<Order> findOrder();
     Task<Order> FindOrder(int orderId);
     Task<int> updateOrder(orderRequest order);
     int deleteorder(orderRequest orderRequest);
@@ -33,9 +34,21 @@ public class OrderService:IOrderService
        return  await _OrderRepository.Add(tmpOrder);
     }
 
+
+    public Task<Order> addOrder(Order order)
+    {
+        throw new NotImplementedException();
+    }
+
     public Order findOrder(orderRequest order)
     {
         throw new NotImplementedException();
+    }
+
+    public Task<Order> findOrder()
+    {
+        return _OrderRepository.find();
+        
     }
 
     public Task<Order> FindOrder(int orderId)

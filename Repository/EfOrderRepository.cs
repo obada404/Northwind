@@ -62,4 +62,10 @@ public class EfOrderRepository:IOrderRepository
     {
         throw new NotImplementedException();
     }
+
+    public async Task<Order> find()
+    {
+        var tmp= _context.Orders.FirstOrDefault();
+        return tmp;
+    }
 }

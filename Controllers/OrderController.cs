@@ -23,7 +23,7 @@ public class OrderController : Controller
     [Route("/order")]
     public async Task<int> GetOrder([FromBody] orderRequestEnv<orderRequest> req )
     {
-        return  await _orderService.addOrder(req.order);
+        return 0; //await _orderService.addOrder(req.order);
     }
     [HttpPut]
     [Route("/order")]

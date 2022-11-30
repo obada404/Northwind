@@ -10,7 +10,7 @@ namespace obada;
 [Orderer(SummaryOrderPolicy.FastestToSlowest)]
 [RankColumn]
 [InProcessAttribute]
-public class batabaseBenchmarks
+public class DatabaseBenchmark
 {
   
 
@@ -19,48 +19,51 @@ public class batabaseBenchmarks
     private static readonly productService _productServicedapper = new productService(new dapperProductRepository());
     private static readonly OrderService _orderServiceEF = new OrderService(new EfOrderRepository(new NorthwindContext()));
     private static OrderService  _orderServicedapper = new OrderService(new dapperOrderRepository());
-    orderRequest tmp = new orderRequest (32543,"VINET", 5, now, now, now, 
-        3, 323800);
-    orderRequest tmp2 = new orderRequest (10291,"VINET", 5, now, now, now, 
-        3, 323800);
     
+    orderRequest tmp2 = new orderRequest (43234,"VINET", 5, now, now, now, 
+        3, 323800);
+    Random random = new Random();
     [Benchmark]
     public void productjoinComplexdapper()
     {
-     
-        _productServicedapper.joinComplex(1);
+        var random = new Random();
+        var rNum = random.Next(1, 70);
+        _productServicedapper.joinComplex(rNum);
 
     }
     [Benchmark]
     public void productjoinComplexEF()
     {
-       
-        _productServiceEF.joinComplex(1);
+        var rNum = random.Next(1, 70);
+        _productServiceEF.joinComplex(rNum);
 
     }
     [Benchmark]
     public void addOrderUseDapper()
     {
-     
+        var rNum = random.Next(5000, 10000);
+        orderRequest tmp = new orderRequest (rNum,"VINET", 5, now, now, now, 
+            3, 323800);     
         _orderServicedapper.addOrder(tmp);
     }
     [Benchmark]
     public void addOrderUseEF()
     {
-       
-        _orderServiceEF.addOrder(tmp);
+      
+         
+        _orderServiceEF.addOrder(tmp2);
     }
     [Benchmark]
     public void findOrderUseDapper()
     {
       
-        _orderServicedapper.FindOrder(tmp2.OrderId);
+        _orderServicedapper.findOrder();
     }
     [Benchmark]
     public void findOrderUseEF()
     {
         
-        _orderServiceEF.FindOrder(tmp2.OrderId);
+        _orderServiceEF.findOrder();
     }
     [Benchmark]
     public void deleteorderUseDapper()
